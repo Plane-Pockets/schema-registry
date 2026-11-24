@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="payload">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="website" type="xs:string"/>
+                <xs:element name="job_type" type="xs:string"/>
+                <xs:element name="parameters">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="origin" type="xs:string"/>
+                            <xs:element name="destination" type="xs:string"/>
+                            <xs:element name="departure_date" type="xs:date"/>
+                            <xs:element name="class" type="xs:string"/>
+                            <xs:element name="adults" type="xs:nonNegativeInteger"/>
+                            <xs:element name="children" type="xs:nonNegativeInteger"/>
+                            <xs:element name="infants" type="xs:nonNegativeInteger"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="proxy" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="server" type="xs:anyURI"/>
+                            <xs:element name="username" type="xs:string"/>
+                            <xs:element name="password" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
