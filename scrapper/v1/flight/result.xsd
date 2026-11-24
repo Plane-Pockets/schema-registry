@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="flightTime">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([01][0-9]|2[0-3]):[0-5][0-9]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="result">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="job_id" type="xs:string"/>
+                <xs:element name="worker_name" type="xs:string"/>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="spider" type="xs:string"/>
+                <xs:element name="total_items" type="xs:nonNegativeInteger"/>
+                <xs:element name="proxy" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="country_code" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="results">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="flight" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="airline" type="xs:string"/>
+                                        <xs:element name="flight_number" type="xs:string"/>
+                                        <xs:element name="origin" type="xs:string"/>
+                                        <xs:element name="destination" type="xs:string"/>
+                                        <xs:element name="departure_time" type="flightTime"/>
+                                        <xs:element name="arrival_time" type="flightTime"/>
+                                        <xs:element name="duration" type="xs:string"/>
+                                        <xs:element name="stops" type="xs:string"/>
+                                        <xs:element name="price" type="xs:string"/>
+                                        <xs:element name="currency" type="xs:string"/>
+                                        <xs:element name="departure_date" type="xs:date"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="error" type="xs:string" nillable="true"/>
+                <xs:element name="metadata">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="execution_time" type="xs:decimal"/>
+                            <xs:element name="retry_count" type="xs:nonNegativeInteger"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

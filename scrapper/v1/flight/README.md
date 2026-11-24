@@ -45,5 +45,17 @@ three fields in the order shown above.
 </payload>
 ```
 
-Validate an XML document against the schema with an XML Schema validator,
-using `payload.xsd`.
+## Result schema
+
+`result.xsd` defines the XML format for a flight-search result. It uses a
+`<result>` root, with the same fields and order as the JSON result. The
+`<proxy>` element is optional. The `<results>` element contains zero or more
+repeated `<flight>` elements.
+
+Flight departure and arrival times use 24-hour `HH:mm` format. The price is a
+string because it may include a currency symbol. The required `<error>` element
+is nillable; represent a null error with
+`<error xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>`.
+
+Validate XML documents with an XML Schema validator, using `payload.xsd` for
+requests or `result.xsd` for results.
